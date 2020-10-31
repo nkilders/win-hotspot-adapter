@@ -25,6 +25,25 @@ public class HotspotAdapter {
     }
 
     /**
+     * @return {@code true} if the Hosted Network is running
+     */
+    public static boolean isRunning() {
+        return Cmd.exec("netsh wlan show hostednetwork")
+                .split("\n").length > 11;
+    }
+
+    /**
+     * Set the Hosted Network's SSID and password (Requires Admin)
+     *
+     * @param ssid     new SSID
+     * @param password new password
+     * @return commandline-output
+     */
+    public static String setHostedNetwork(String ssid, String password) {
+        return Cmd.exec("netsh wlan set hostednetwork mode=\"allow\" key=\"%s\" key=\"%s\"", ssid, password);
+    }
+
+    /**
      * @return the Hosted Network's SSID
      */
     public static String getSSID() {
@@ -45,27 +64,8 @@ public class HotspotAdapter {
     }
 
     /**
-     * Set the Hosted Network's SSID and password (Requires Admin)
-     *
-     * @param ssid     new SSID
-     * @param password new password
-     * @return commandline-output
-     */
-    public static String setHostedNetwork(String ssid, String password) {
-        return Cmd.exec("netsh wlan set hostednetwork mode=\"allow\" key=\"%s\" key=\"%s\"", ssid, password);
-    }
-
-    /**
-     * @return {@code true} if the Hosted Network is running
-     */
-    public static boolean isRunning() {
-        return Cmd.exec("netsh wlan show hostednetwork")
-                .split("\n").length > 11;
-    }
-
-    /**
      * Sets a Registry key, which interface to use for hosting the Hosted Network.
-     * Could help if the Hosted Network does not work.
+     * Could help if the Hosted Network does not work properly.
      */
     public static void setPrivateInterface() {
         stopHostedNetwork();
