@@ -12,7 +12,7 @@ public class Cmd {
      * Execute system commands
      *
      * @param command Command to be executed
-     * @return commandline-output
+     * @return Commandline-output
      */
     public static String exec(String command) {
         try {
@@ -31,12 +31,12 @@ public class Cmd {
             return sb.toString();
         } catch (Exception exception) {
             exception.printStackTrace();
-            return null;
+            return "";
         }
     }
 
     /**
-     * The same method as {@link de.noah.win.hotspotadapter.Cmd#exec(String)} but with integrated {@link java.lang.String#format(String, Object...)}
+     * The same method as {@link de.nkilders.win.hotspotadapter.Cmd#exec(String)} but with integrated {@link java.lang.String#format(String, Object...)}
      *
      * @param command Command to be executed
      * @param args    Formatting-arguments
@@ -65,5 +65,4 @@ public class Cmd {
 
         return sb.toString();
     }
-
 }

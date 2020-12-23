@@ -65,7 +65,7 @@ public class HotspotAdapter {
 
     /**
      * Sets a Registry key, which interface to use for hosting the Hosted Network.
-     * Could help if the Hosted Network does not work properly.
+     * Might help if the Hosted Network does not work properly.
      */
     public static void setPrivateInterface() {
         stopHostedNetwork();
@@ -128,12 +128,12 @@ public class HotspotAdapter {
     /**
      * @return an {@link java.util.ArrayList} of available IPv4-interfaces
      */
-    public static List<IPv4Interface> getIPv4Interfaces() {
+    public static ArrayList<IPv4Interface> getIPv4Interfaces() {
         startHostedNetwork();
         String[] lines = Cmd.exec("netsh int ipv4 show interfaces")
                 .split("\n");
 
-        List<IPv4Interface> interfaceList = new ArrayList<>();
+        ArrayList<IPv4Interface> interfaceList = new ArrayList<>();
         for (int i = 2; i < lines.length; i++) {
             if (lines[i].contains("Loopback Pseudo-Interface"))
                 continue;
@@ -150,8 +150,8 @@ public class HotspotAdapter {
     /**
      * @return an {@link java.util.ArrayList} of devices (MAC-addresses) connected to the Hosted Network
      */
-    public static List<String> getConnectedDevices() {
-        List<String> deviceList = new ArrayList<>();
+    public static ArrayList<String> getConnectedDevices() {
+        ArrayList<String> deviceList = new ArrayList<>();
         String[] lines = Cmd.exec("netsh wlan show hostednetwork")
                 .split("\n");
 
@@ -163,5 +163,4 @@ public class HotspotAdapter {
 
         return deviceList;
     }
-
 }
