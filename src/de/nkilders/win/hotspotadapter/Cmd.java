@@ -1,4 +1,4 @@
-package de.noah.win.hotspotadapter;
+package de.nkilders.win.hotspotadapter;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
