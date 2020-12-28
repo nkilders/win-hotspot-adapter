@@ -94,7 +94,7 @@ public class HotspotAdapter {
     public static void setPublicInterface(IPv4Interface ipv4Interface) {
         if (ipv4Interface != null) {
             Cmd.exec("reg add \"HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\SharedAccess\" /v PublicIndex /t REG_DWORD /d %s /f",
-                    Integer.parseInt("" + ipv4Interface.index, 16));
+                    Integer.parseInt("" + ipv4Interface.getIndex(), 16));
         }
     }
 
