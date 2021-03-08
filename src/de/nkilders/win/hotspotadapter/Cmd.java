@@ -25,7 +25,7 @@ public class Cmd {
 
             while ((line = reader.readLine()) != null) {
                 sb.append((sb.length() == 0 ? "" : "\n"))
-                        .append(deleteDoubleSpaces(line));
+                        .append(line.replaceAll("( )+", " "));
             }
 
             return sb.toString();
@@ -44,25 +44,5 @@ public class Cmd {
      */
     public static String exec(String command, Object... args) {
         return exec(String.format(command, args));
-    }
-
-    /**
-     * Removes repeating spaces from a given String
-     *
-     * @param input Input-String
-     * @return {@code input} without repeating spaces
-     */
-    private static String deleteDoubleSpaces(String input) {
-        StringBuilder sb = new StringBuilder();
-        boolean b = false;
-
-        for (char ch : input.toCharArray()) {
-            if (!b || (b && ch != ' '))
-                sb.append(ch);
-
-            b = ch == ' ';
-        }
-
-        return sb.toString();
     }
 }
